@@ -1,0 +1,22 @@
+.container {
+    border: 1px solid black;
+    padding: 1rem;
+    margin: 1rem;
+}
+.form-inline .label {
+    margin-top: 10px;
+}
+input {
+    ime-mode: active;
+}
+input.ime-disabled {
+    ime-mode: disabled;
+}
+input.ime-inactive {
+    ime-mode: inactive
+}
+ 
+.table > tbody > tr.active > td,
+.table > tbody > tr.active > th {
+    background-color: #e1f2fe;
+}

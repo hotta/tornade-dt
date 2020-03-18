@@ -5,21 +5,14 @@
 		<title>DataTableサンプル</title>
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-
-		<style>
-			.container {
-				border: 1px solid black;
-				padding: 1rem;
-				margin: 1rem;
-			}
-		</style>
+		<link rel="stylesheet" href="{{ static_url('css/style.css') }}"/>
 	</head>
 	<body>
 		<div class="container container-fluid">
 			<div>
 				名前：
-				<input type="text" id="searchName" value="">
-				<input type="button" id="searchButton" value="検索">
+				<input type="text" class="input-sm ime-disabled" id="searchName" placeholder="名前" required>
+				<button id="searchButton" type="button" class="btn btn-sm btn-info">検索</button>
 			</div>
 			<div>
 				<table id="myTable" class="table table-striped tagle-bordered">
@@ -33,6 +26,9 @@
 							<th>好物</th>
 						</tr>
 					</thead>
+					<tbody>
+
+					</tbody>
 					<tfoot>
 						<tr>
 							<th>No</th>
@@ -45,9 +41,118 @@
 					</tfoot>
 				</table>
 			</div>
+			<div>
+				<hr>
+				<div class="pull-left">
+					<button id="registButton" type="button" class="btn btn-primary">登録</button>
+					<button id="updateButton" type="button" class="btn btn-success" disabled>更新</button>
+				</div>
+				<div class="pull-right">
+					<button id="deleteButton" type="button" class="btn btn-danger" disabled>削除</button>
+				</div>
+			</div>
+		</div>
+		<div id="form" class="modal fade" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered ">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 id="dialogTitle" class="modal-title">登録</h4>
+					</div>
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-12">
+								<form class="form-horizontal">
+									<div class="form-group">
+										<div class="form-inline">
+											<div class="col-sm-4">
+												<label class="control-label">No</label>
+												<span class="label label-danger pull-right">必須</span>
+											</div>
+											<div class="input-group col-sm-2">
+												<input type="text" class="form-control ime-disabled" id="inputNo" placeholder="No" required>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="form-inline">
+											<div class="col-sm-4">
+												<label class="control-label">名前</label>
+												<span class="label label-danger pull-right">必須</span>
+											</div>
+											<div class="input-group col-sm-2">
+												<input type="text" class="form-control" id="inputName" placeholder="名前" required>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="form-inline">
+											<div class="col-sm-4">
+												<label class="control-label">性別</label>
+												<span class="label label-danger pull-right">必須</span>
+											</div>
+											<div class="input-group col-sm-2">
+												<input type="text" class="form-control" id="inputSex" placeholder="性別">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="form-inline">
+											<div class="col-sm-4">
+												<label class="control-label">年齢</label>
+												<span class="label label-danger pull-right">必須</span>
+											</div>
+											<div class="input-group col-sm-2">
+												<input type="text" class="form-control ime-disabled" id="inputAge" placeholder="年齢">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="form-inline">
+											<div class="col-sm-4">
+												<label class="control-label">種別</label>
+												<span class="label label-danger pull-right">必須</span>
+											</div>
+											<div class="input-group col-sm-7">
+												<select id="inputKind" class="form-control" >
+													<option value="01">キジトラ</option>
+													<option value="02">長毛種（不明）</option>
+													<option value="03">ミケ（っぽい）</option>
+													<option value="04">サビ</option>
+													<option value="09">その他</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="form-inline">
+											<div class="col-sm-4">
+												<label class="control-label">好物</label>
+												<span class="label label-success pull-right">任意</span>
+											</div>
+											<div class="input-group col-sm-7">
+												<input type="text" class="form-control" id="inputFavorite" placeholder="好物">
+											</div>
+										</div>
+									</div>
+								</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div id="inputError" class="pull-left" style="color:red; padding:5px;"></div>
+						<button id="sendRegistButton" type="button" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;登録</button>
+						<button id="sendUpdateButton" type="button" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;修正</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-remove"></i>&nbsp;閉じる</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 	<script type="text/javascript" src="{{ static_url('js/script.js') }}"></script>
