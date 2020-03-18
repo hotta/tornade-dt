@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>DataTableサンプル</title>
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+		<style>
+			.container {
+				border: 1px solid black;
+				padding: 1rem;
+				margin: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container container-fluid">
+			<div>
+				名前：
+				<input type="text" id="searchName" value="">
+				<input type="button" id="searchButton" value="検索">
+			</div>
+			<div>
+				<table id="myTable" class="table table-striped tagle-bordered">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>名前</th>
+							<th>性別</th>
+							<th>年齢</th>
+							<th>種別</th>
+							<th>好物</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>No</th>
+							<th>名前</th>
+							<th>性別</th>
+							<th>年齢</th>
+							<th>種別</th>
+							<th>好物</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="{{ static_url('js/script.js') }}"></script>
+
+</html>
