@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `db01` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `db01`;
 -- MariaDB dump 10.17  Distrib 10.4.11-MariaDB, for Win64 (AMD64)
 --
 -- Host: 127.0.0.1    Database: db01
@@ -35,7 +37,7 @@ CREATE TABLE `mstkind` (
 
 LOCK TABLES `mstkind` WRITE;
 /*!40000 ALTER TABLE `mstkind` DISABLE KEYS */;
-INSERT INTO `mstkind` VALUES ('1','キジトラ'),('2','長毛種（不明）'),('3','ミケ（っぽい）'),('4','サビ'),('9','その他');
+INSERT INTO `mstkind` VALUES ('01','キジトラ'),('02','長毛種（不明）'),('03','ミケ（っぽい）'),('04','サビ'),('09','その他');
 /*!40000 ALTER TABLE `mstkind` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +65,7 @@ CREATE TABLE `tblcat` (
 
 LOCK TABLES `tblcat` WRITE;
 /*!40000 ALTER TABLE `tblcat` DISABLE KEYS */;
-INSERT INTO `tblcat` VALUES (1,'そら','♂',6,'1','犬の人形'),(2,'りく','♂',5,'2','人間'),(3,'うみ','♀',4,'3','高級ウェットフード'),(4,'こうめ','♀',2,'4','横取りフード');
+INSERT INTO `tblcat` VALUES (1,'そら','♂',6,'01','犬の人形'),(2,'りく','♂',5,'02','人間'),(3,'うみ','♀',4,'03','高級ウェットフード'),(4,'こうめ','♀',2,'04','横取りフード');
 /*!40000 ALTER TABLE `tblcat` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -76,4 +78,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-18 10:32:51
+-- Dump completed on 2020-03-18 11:33:42

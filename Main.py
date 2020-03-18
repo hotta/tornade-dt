@@ -21,7 +21,22 @@ def try_exit():
     if accect_ctlc:
         tornado.ioloop.IOLoop.instance().stop()
 
-class MainHandler(RequestHandler):
+class BaseRequestHandler(RequestHandler):
+    """https://stackoverflow.com/questions/35254742/tornado-server-enable-cors-requests
+    
+    Arguments:
+        RequestHandler {[type]} -- [description]
+    """
+    def set_default_headers(self):
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+
+    def options(self):
+        self.set_status(204)
+        self.finish()
+
+class MainHandler(BaseRequestHandler):
     """
     画面表示
     """
@@ -32,7 +47,7 @@ class MainHandler(RequestHandler):
         self.render("index.html")
 
 
-class InitHandler(RequestHandler):
+class InitHandler(BaseRequestHandler):
     """
     一覧初期化用
     """
@@ -46,7 +61,7 @@ class InitHandler(RequestHandler):
         self.write(json.dumps(result, ensure_ascii=False))
 
 
-class SearchHandler(RequestHandler):
+class SearchHandler(BaseRequestHandler):
     """
     データ検索
     """
@@ -71,7 +86,7 @@ class SearchHandler(RequestHandler):
         self.write(json.dumps(result, ensure_ascii=False))
 
 
-class GetRecordHandler(RequestHandler):
+class GetRecordHandler(BaseRequestHandler):
     """
     プライマリキーを指定してデータ取得
     """
@@ -91,7 +106,7 @@ class GetRecordHandler(RequestHandler):
         self.write(json.dumps(result, ensure_ascii=False))
 
 
-class RegistHandler(RequestHandler):
+class RegistHandler(BaseRequestHandler):
     """
     データ登録
     """
@@ -124,7 +139,7 @@ class RegistHandler(RequestHandler):
         self.write(json.dumps(result, ensure_ascii=False))
 
 
-class UpdateHandler(RequestHandler):
+class UpdateHandler(BaseRequestHandler):
     """
     更新
     """
@@ -155,7 +170,7 @@ class UpdateHandler(RequestHandler):
         self.write(json.dumps(result, ensure_ascii=False))
 
 
-class DeleteHandler(RequestHandler):
+class DeleteHandler(BaseRequestHandler):
     """
     削除
     """
