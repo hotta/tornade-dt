@@ -10,15 +10,15 @@ from contextlib import closing
 
 from Utils.MySQLUtil import MySQLUtil
 
-accect_ctlc = False
+accept_ctlc = False
 
 def signal_handler(signum, frame):
-    global accect_ctlc
-    accect_ctlc = True
+    global accept_ctlc
+    accept_ctlc = True
 
 def try_exit(): 
-    global accect_ctlc
-    if accect_ctlc:
+    global accept_ctlc
+    if accept_ctlc:
         tornado.ioloop.IOLoop.instance().stop()
 
 class BaseRequestHandler(RequestHandler):
